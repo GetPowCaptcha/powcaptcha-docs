@@ -1,0 +1,74 @@
+---
+title: Verify powCAPTCHA response
+description: Verify powCAPTCHA response on your server
+i18nReady: true
+---
+import { Tabs, TabItem,  CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
+import { Code } from '@astrojs/starlight/components';
+import javascriptExample from './verify-examples/javascript.js?raw';
+import pythonExample from './verify-examples/python.py?raw';
+import phpExample from './verify-examples/php.php?raw';
+
+
+
+import ReadMore from '~/components/ReadMore.astro';
+
+
+To verify the powCAPTCHA response on your server, you need to send a POST request to the powCAPTCHA verification endpoint with the necessary parameters. Here's how you can do it:
+## Endpoint
+
+The verification endpoint URL is:
+```plaintext
+https://api.powcaptcha.com/challenges/verify
+```
+## Request Method
+The request method is `POST`.
+## Request Headers
+```plaintext
+Content-Type: application/json
+```
+## Request Body
+```json
+{
+  "solution": "your_solution_token",
+  "secret": "your_private_key",
+  "spamFilter": {
+    "text": "optional_text_to_check_for_spam",
+    "email": "optional_email_to_check_for_spam"
+  }
+}
+```
+
+
+
+## Parameters
+
+| Parameter         | Type     | Description                                                                                   |
+|-------------------|----------|-----------------------------------------------------------------------------------------------|
+| `solution`        | string   | The solution token received from the powCAPTCHA widget.                                       |
+| `secret`          | string   | Your application's private key (keep this secret, do not expose on the frontend).             |
+| `spamFilter`      | object   | *(Optional)* Object with optional `text` and/or `email` fields for spam filtering. Requires paid plan for advanced filtering. |
+| `spamFilter.text` | string   | *(Optional)* Text to check for spam (requires paid plan for advanced filtering).              |
+| `spamFilter.email`| string   | *(Optional)* Email to check for spam (requires paid plan for advanced filtering).             |
+
+
+## Server-side Verification Examples
+
+Below are examples of how to verify the powCAPTCHA response on your server using various programming languages.
+
+
+
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript" default>
+    <Code lang="typescript" code={javascriptExample} />    
+  </TabItem>
+    <TabItem value="php" label="PHP">
+    <Code lang="php" code={phpExample} />
+  </TabItem>
+  <TabItem value="python" label="Python">
+    <Code lang="python" code={pythonExample} />
+  </TabItem>
+
+
+  </Tabs>

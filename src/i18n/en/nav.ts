@@ -21,6 +21,8 @@ export default [
 	{ text: 'Welcome, World!', header: true, type: 'learn', key: 'welcomeWorld' },
 	{ text: 'Getting Started', slug: 'getting-started', key: 'getting-started' },
 	{ text: 'Installation', slug: 'installation', key: 'installation' },
+	{ text: 'Server side validation', header: true, type: 'learn', key: 'server-side-validation' },
+	{ text: 'Verify', slug: 'verify', key: 'verify' },
 ] satisfies NavEntry[];
 
 type NavEntry = {

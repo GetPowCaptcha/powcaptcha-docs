@@ -20,7 +20,7 @@ export default defineConfig({
 			title: 'Docs',
 			customCss: ['./src/styles/custom.css'],
 			expressiveCode: {
-				plugins: [pluginCollapsibleSections()],
+				//plugins: [pluginCollapsibleSections()],
 			},
 			components: {
 				EditLink: './src/components/starlight/EditLink.astro',
