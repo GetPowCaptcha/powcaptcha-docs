@@ -1,0 +1,33 @@
+name: "Incorrect Content Report 📄"
+description: Report an issue with existing content.
+labels: [
+  "improve documentation"
+]
+body:
+  - type: markdown
+    attributes:
+      value: "# Reminder: If reporting a minor correction (e.g. typo), feel free to submit a PR directly!"
+  - type: input
+    id: subject
+    attributes:
+      label: 📚 Subject area/topic
+      description: Documentation area/topic (e.g. SSR, CMS guide, environment variables)
+      placeholder: "..."
+    validations:
+      required: true
+  - type: textarea
+    id: page
+    attributes:
+      label: "📋 Page(s) affected (or suggested, for new content)"
+      description: Please provide the URL of the page(s) affected.
+      placeholder: https://docs.staticsnap.com/en/getting-started/
+    validations:
+        required: true
+  - type: textarea
+    id: generalDesc
+    attributes:
+      label: "📋 Description of content that is out-of-date or incorrect"
+      description: Let us know what's wrong!
+      placeholder: "..."
+    validations:
+        required: true

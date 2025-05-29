@@ -1,0 +1,40 @@
+---
+import UIString from '../UIString.astro';
+---
+
+<div dir="ltr" lang="en" class="sponsors">
+	<h2 class="sponsors-title"><UIString key="leftSidebar.sponsoredBy" /></h2>
+	<a class="sponsors-title" href="mailto:hello@statisnap.com"> Contact us</a>
+</div>
+
+<style>
+	.sponsors {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 1.5rem;
+		padding: 1.5rem 0.5rem 0.75rem;
+	}
+	a {
+		display: flex;
+		align-items: center;
+		min-height: 3rem;
+		opacity: 0.75;
+	}
+	a:hover {
+		opacity: 1;
+	}
+	svg {
+		color: var(--sl-color-white);
+		fill: currentColor;
+	}
+
+	.sponsors-title {
+		width: 100%;
+		color: var(--sl-color-gray-3);
+		font-size: var(--sl-text-xs);
+		font-weight: 400;
+		font-family: var(--__sl-font-mono);
+		line-height: var(--sl-line-height-headings);
+		margin: 0 0 0.5rem;
+	}
+</style>

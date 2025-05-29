@@ -1,0 +1,16 @@
+---
+import { getAllContributors } from '~/util/getContributors';
+import FacePile from './FacePile.astro';
+
+export interface Props {
+	// TODO: remove it
+	githubRepo?: `${string}/${string}`;
+}
+
+//const { githubRepo = 'static-snap/static-snap' } = Astro.props as Props;
+
+
+const contributors = await getAllContributors('static-snap/static-snap');
+---
+
+<FacePile {contributors} />

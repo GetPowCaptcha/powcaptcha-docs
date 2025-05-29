@@ -1,0 +1,40 @@
+---
+title: Install the widget
+description: Install powCAPTCHA widget on your website
+i18nReady: true
+---
+import { Tabs, TabItem, FileTree, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
+import ReadMore from '~/components/ReadMore.astro';
+
+## Loading the powCAPTCHA widget
+
+The easiest way to load the powCAPTCHA widget is to include the following script on your website:
+
+```html
+<script src="https://js.powcaptcha.com/widget.js" async defer></script>
+```
+This script will load the powCAPTCHA widget and make it available for use on your website. Make sure to include it in the `<head>` section of your HTML or just before the closing `</body>` tag.
+
+## Insert the widget in your HTML
+
+To insert the powCAPTCHA widget in your HTML, you need to use the `<powcaptcha-widget>` element. This element will display the widget on your page. Here is a basic example:
+
+```html
+<powcaptcha-widget data-app-id="YOUR_APP_ID"></powcaptcha-widget>
+```
+
+Replace `YOUR_APP_ID` with your actual application ID, which you can find in your powCAPTCHA dashboard.
+## Customize the widget
+You can customize the widget by adding various attributes to the `<powcaptcha-widget>` element. Here are some common attributes you can use:
+| Attribute          | Description                                                                 |
+|--------------------|-----------------------------------------------------------------------------|
+| `data-app-id`      | Your powCAPTCHA application ID.                                             |
+| `data-locale`    | The 2 digits language locale code (e.g., `en`, `fr`, `es`) to display the widget in a specific language. Default is the user's browser language. |
+| `data-theme`    | The theme of the widget. You can choose from `light`, `dark`, or `auto`. Default is `auto`. |
+| `data-context`    | A string that will be sent to the powCAPTCHA server to help identify the context of the widget. This can be useful for analytics or debugging purposes. |
+| `data-invisible`    | If set to `true`, the widget will be rendered as an invisible widget. This is useful for scenarios where you want to verify users without displaying the widget. Default is `false`. |
+| `name`    | The field name to use when submitting the widget's response. This is useful if you want to handle the response on the server side. Default is `powcaptcha-response`. |
+| `data-invisible-allow-submit`    | By default, the widget will not allow form submission until it is validated in invisible mode. If you want to allow form submission without validation, set this attribute to `true`. Default is `false`. |
+| `data-detect-required-fields`    | The `data-detect-required-fields` attribute indicates whether the widget should automatically detect required fields in the form. If set to `false`, the widget will not attempt to detect required fields. It is recommended to maintain this attribute as `true` to ensure signals collection works correctly. Default is `true`. |
+| `data-backend-url`    | The URL of your backend server that will handle the widget's response. This is useful if you want implement you own backend logic for handling the widget's response. Default is `https://api.powcaptcha.com`. |
+

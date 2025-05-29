@@ -1,0 +1,18 @@
+:root[data-theme="light"] {
+	--sl-color-accent: oklch(54.6% 0.245 262.881);
+}
+:root[data-theme="dark"] {
+	--sl-color-accent: oklch(54.6% 0.245 262.881);
+}
+
+/** Custom Styles **/
+
+.card-grid {
+	/* TODO(@delucis): Upstream this fix to Starlight. `gtc` missing there. */
+	grid-template-columns: 100%;
+}
+@media (min-width: 50rem) {
+	.card-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
