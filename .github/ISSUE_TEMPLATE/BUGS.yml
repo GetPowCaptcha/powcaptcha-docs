@@ -17,7 +17,7 @@ body:
     attributes:
       label: "📋 On which page(s) it occurs"
       description: Please indicate on which page(s) the issue occurs.
-      placeholder: https://docs.staticsnap.com/en/getting-started/
+      placeholder: https://docs.powcaptcha.com/en/getting-started/
     validations:
         required: true
   - type: textarea

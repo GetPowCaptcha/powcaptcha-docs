@@ -46,7 +46,7 @@ export default defineConfig({
 			sidebar: makeSidebar(),
 			social: {
 				github: 'https://github.com/GetPowCaptcha/powcaptcha-docs',
-				//discord: 'https://staticsnap.com/chat',
+				//discord: 'https://powcaptcha.com/chat',
 			},
 			pagefind: true,
 			head: [

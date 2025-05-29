@@ -20,7 +20,7 @@ body:
     attributes:
       label: "📋 Suggested page"
       description: Please provide the URL of the page(s) or section where this idea would fit.
-      placeholder: https://docs.staticsnap.com/en/getting-started/
+      placeholder: https://docs.powcaptcha.com/en/getting-started/
     validations:
         required: true
   - type: textarea
