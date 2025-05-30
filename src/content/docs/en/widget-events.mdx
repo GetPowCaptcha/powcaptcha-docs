@@ -22,16 +22,17 @@ The following events are available for the powCAPTCHA widget:
 You can listen to these events using standard JavaScript event listeners. Here’s an example of how to do this:
 
 ```javascript
-document.addEventListener('@powcaptcha/widget/solved', (event) => {
+const widget = document.querySelector('powcaptcha-widget');
+widget.addEventListener('@powcaptcha/widget/solved', (event) => {
     console.log('Challenge solved:', event.detail.token);
 });
-document.addEventListener('@powcaptcha/widget/error', (event) => {
+widget.addEventListener('@powcaptcha/widget/error', (event) => {
     console.error('Error occurred:', event.detail.error);
 });
-document.addEventListener('@powcaptcha/widget/solving', () => {
+widget.addEventListener('@powcaptcha/widget/solving', () => {
     console.log('Solving challenge...');
 });
-document.addEventListener('@powcaptcha/widget/solving/progress', (event) => {
+widget.addEventListener('@powcaptcha/widget/solving/progress', (event) => {
     console.log('Solving progress:', event.detail.progress);
 });
 ```
