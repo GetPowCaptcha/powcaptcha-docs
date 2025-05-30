@@ -1,0 +1,44 @@
+---
+title: Modo invisible
+description: Como integrar el widget en modo invisible
+i18nReady: true
+---
+
+To use powCAPTCHA in invisible mode, simply add the `data-invisible` attribute to the `<powcaptcha-widget>` element. This will render the widget as invisible.
+
+Additionally, you should choose the best moment to obtain and solve the challenge. There are several options, but you can choose or create your own, such as:
+- When submitting a form.
+- When focusing on a field in your form.
+- When a keyup event (or after a certain number of keyups) occurs in a form field.
+- After a certain amount of time.
+- Combining several of the above.
+
+Keep in mind that if you do this as soon as the page loads, no user signals will be collected, which may affect the accuracy of the challenge rating. Therefore, it is recommended to wait a bit before obtaining the invisible challenge.
+
+Here is an example of how to integrate the widget in invisible mode:
+
+```html
+<powcaptcha-widget data-app-id="YOUR_APP_ID" data-invisible="true"></powcaptcha-widget>
+```
+You can customize the invisible widget by adding various attributes to the `<powcaptcha-widget>` element. You can check the [widget installation section](/en/installation/#customize-the-widget) for a complete list of available attributes.
+
+## Execution Example
+
+Here is an example of how to manually execute the widget when it is in invisible mode.
+This example combines two strategies:
+- Each time a form field receives focus, or a keyup, and if more than 5 seconds have passed since the page loaded, the invisible challenge will be solved.
+- Otherwise, the invisible challenge will be solved when the form is submitted.
+
+
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+import invisibleJs from './invisible-mode-examples/invisible.js?raw';
+import invisibleHtml from './invisible-mode-examples/invisible.html?raw';
+
+<Tabs>
+  <TabItem value="html" label="HTML">
+    <Code lang="html" code={invisibleHtml} />
+  </TabItem>
+  <TabItem value="javascript" label="JavaScript" default>
+    <Code lang="typescript" code={invisibleJs} />    
+  </TabItem>
+  </Tabs>

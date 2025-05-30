@@ -3,16 +3,6 @@ title: Verify powCAPTCHA response
 description: Verify powCAPTCHA response on your server
 i18nReady: true
 ---
-import { Tabs, TabItem,  CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
-import { Code } from '@astrojs/starlight/components';
-import javascriptExample from './verify-examples/javascript.js?raw';
-import pythonExample from './verify-examples/python.py?raw';
-import phpExample from './verify-examples/php.php?raw';
-
-
-
-import ReadMore from '~/components/ReadMore.astro';
-
 
 To verify the powCAPTCHA response on your server, you need to send a POST request to the powCAPTCHA verification endpoint with the necessary parameters. Here's how you can do it:
 ## Endpoint
@@ -56,7 +46,10 @@ Content-Type: application/json
 
 Below are examples of how to verify the powCAPTCHA response on your server using various programming languages.
 
-
+import { Tabs, TabItem,  Code } from '@astrojs/starlight/components';
+import javascriptExample from './verify-examples/javascript.js?raw';
+import pythonExample from './verify-examples/python.py?raw';
+import phpExample from './verify-examples/php.php?raw';
 
 
 <Tabs>
