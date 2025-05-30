@@ -1,0 +1,20 @@
+---
+title: Widget Attributes
+description: How to customize the powCAPTCHA widget with attributes.
+i18nReady: true
+
+---
+The powCAPTCHA widget can be customized using various attributes that control its behavior and appearance. Below is a list of available attributes and their descriptions.
+
+| Attribute          | Description                                                                 |
+|--------------------|-----------------------------------------------------------------------------|
+| `data-app-id`      | Your powCAPTCHA application ID.                                             |
+| `data-locale`    | The 2 digits language locale code (e.g., `en`, `fr`, `es`) to display the widget in a specific language. Default is the user's browser language. |
+| `data-theme`    | The theme of the widget. You can choose from `light`, `dark`, or `auto`. Default is `auto`. |
+| `data-context`    | A string that will be sent to the powCAPTCHA server to help identify the context of the widget. This can be useful for analytics or debugging purposes. |
+| `data-invisible`    | If set to `true`, the widget will be rendered as an invisible widget. This is useful for scenarios where you want to verify users without displaying the widget. Default is `false`. |
+| `name`    | The field name to use when submitting the widget's response. This is useful if you want to handle the response on the server side. Default is `powcaptcha-response`. |
+| `data-invisible-allow-submit`    | By default, the widget will not allow form submission until it is validated in invisible mode. If you want to allow form submission without validation, set this attribute to `true`. Default is `false`. |
+| `data-detect-required-fields`    | The `data-detect-required-fields` attribute indicates whether the widget should automatically detect required fields in the form. If set to `false`, the widget will not attempt to detect required fields. It is recommended to maintain this attribute as `true` to ensure signals collection works correctly. Default is `true`. |
+| `data-backend-url`    | The URL of your backend server that will handle the widget's response. This is useful if you want implement you own backend logic for handling the widget's response. Default is `https://api.powcaptcha.com`. |
+

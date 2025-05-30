@@ -1,0 +1,37 @@
+---
+title: Widget Events
+description: How to handle powCAPTCHA widget events.
+i18nReady: true
+
+---
+
+The powCAPTCHA widget emits various events that you can listen to in order to handle user interactions and widget state changes. This allows you to customize the behavior of the widget based on user actions.
+
+## Available Events
+
+The following events are available for the powCAPTCHA widget:
+| Event Name          | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| `@powcaptcha/widget/solved`           | Fired when the challenge is successfully solved. Contains a token in the event detail.                |
+| `@powcaptcha/widget/error`            | Fired when an error occurs during the challenge process. Contains error details in the event detail.  |
+| `@powcaptcha/widget/solving`          | Fired when the challenge solving process starts. No additional detail is provided.                    |
+| `@powcaptcha/widget/solving/progress` | Fired to indicate progress while solving the challenge. Contains a progress value in the event detail.|
+
+
+## Listening to Events
+You can listen to these events using standard JavaScript event listeners. Here’s an example of how to do this:
+
+```javascript
+document.addEventListener('@powcaptcha/widget/solved', (event) => {
+    console.log('Challenge solved:', event.detail.token);
+});
+document.addEventListener('@powcaptcha/widget/error', (event) => {
+    console.error('Error occurred:', event.detail.error);
+});
+document.addEventListener('@powcaptcha/widget/solving', () => {
+    console.log('Solving challenge...');
+});
+document.addEventListener('@powcaptcha/widget/solving/progress', (event) => {
+    console.log('Solving progress:', event.detail.progress);
+});
+```

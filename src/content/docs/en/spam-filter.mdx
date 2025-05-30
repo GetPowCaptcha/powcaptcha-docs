@@ -1,0 +1,135 @@
+---
+title: Spam Filter 
+description: How to use powCAPTCHA spam filter
+i18nReady: true
+---
+
+Users who have purchased a Pro subscription or higher can use the powCAPTCHA spam filter. The spam filter uses advanced machine learning techniques to detect and filter spam in web forms.
+
+## How to use the spam filter
+To use the spam filter, simply include the `spamFilter` parameter in the verification request when verifying the challenge solution.
+
+The `spamFilter` parameter should be an object containing the following fields:
+```javascript
+{
+  email: 'optional_email_to_check_for_spam',
+  text: 'optional_text_to_check_for_spam'
+}
+```
+These fields are the ones your users will enter in the form, and the spam filter will analyze them to determine if they are spam or not.
+Example:
+
+
+
+```javascript
+const response = await fetch('https://api.powcaptcha.com/challenges/verify', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    secret: 'your_private_key',
+    solution: 'your_solution_token',
+    spamFilter: {
+	    email: requestUser.email,
+	    text: requestUser.text,
+    },
+    }),
+});
+
+```
+
+When you send the request, the spam filter will analyze the `email` and `text` fields and return a response like the following:
+```json
+{
+  "type": "item",
+  "success": true,
+  "data": {
+    "signals": {
+      "score": 0.78
+    },
+    "spamFilter": {
+      "took": 100,
+      "score": 0.4,
+      "text": {
+        "score": 0.25,
+        "languages": [],
+        "reasons": [
+          "text.GIBBERISH_NONSENSICAL"
+        ]
+      },
+      "email": {
+        "score": 0.55,
+        "reasons": [
+          "email.FREE_PROVIDER"
+        ]
+      }
+    },
+    "success": true,
+    "visitor": {
+      "id": "VISITOR_ID",
+      "continent": "USER_CONTINENT",
+      "country": "USER_COUNTRY",
+      "region": "USER_REGION",
+      "city": "USER_CITY",
+      "postalCode": "USER_POSTAL_CODE",
+      "timezone": "USER_TIMEZONE",
+      "isEUCountry": "USER_IS_EU_COUNTRY",
+      "latitude": "USER_LATITUDE",
+      "longitude": "USER_LONGITUDE"
+    }
+  }
+}
+```
+
+As you can see, the `spamFilter` field contains an object with the spam score and the reasons why it is considered spam. The score ranges from 0 to 1, where 0 means it is highly likely to be spam and 1 means it is not spam.
+
+The `spamFilter.score` field will contain the overall spam filter score (which is the average of both), while the `spamFilter.text` and `spamFilter.email` fields will contain the specific score and reasons for the text and email, respectively.
+Based on the score, you can decide whether to accept or reject the form. For example, if the score is less than 0.5, you can consider it spam and reject the form by showing an error message to the user.
+```javascript 
+if (response.data.spamFilter.score < 0.5) {
+  // Mostrar mensaje de error al usuario
+  console.error('El formulario ha sido marcado como spam');
+} else {
+  // Procesar el formulario
+  console.log('El formulario ha sido aceptado');
+}
+```
+
+
+## Spam Filter Detectors
+The spam filter uses various detectors to analyze the text and email fields.
+# Text Detectors
+
+| Detector Name                        | Description                                                                                   |
+|--------------------------------------|-----------------------------------------------------------------------------------------------|
+| text.EMPTY                          | Detects if the submitted text is empty.                                                        |
+| text.SPAM_KEYWORDS_HIGH_DENSITY      | Detects a high density of common spam keywords in the text.                                   |
+| text.PROFANITY_STRONG                | Identifies strong or offensive profanity in the text.                                         |
+| text.PROMOTIONAL_LANGUAGE_EXCESSIVE  | Flags excessive use of promotional or marketing language.                                     |
+| text.UNREALISTIC_CLAIMS_PROMISES     | Detects unrealistic promises or exaggerated claims.                                           |
+| text.EXCESSIVE_CAPITALIZATION        | Flags text with an unusually high amount of capital letters.                                  |
+| text.EXCESSIVE_EXCLAMATION_PUNCTUATION | Detects excessive use of exclamation marks or similar punctuation.                          |
+| text.URGENCY_PRESSURE_TACTICS        | Identifies language that pressures the user with urgency.                                     |
+| text.GIBBERISH_NONSENSICAL           | Flags text that appears to be gibberish or nonsensical.                                       |
+| text.TEXT_SHORT                      | Detects if the submitted text is unusually short.                                             |
+| text.LINK_ONLY_NO_CONTEXT            | Flags submissions that contain only a link without any context.                               |
+| field.INVALID_FORMAT_GENERIC         | Detects fields that do not match the expected format.                                         |
+| field.MISMATCHED_TYPE_GENERIC        | Flags fields where the data type does not match the expected type.                            |
+| url.SUSPICIOUS_DOMAIN_NAME           | Identifies URLs with suspicious or known malicious domain names.                              |
+| url.SHORTENED_LINK_OBFUSCATING       | Flags the use of URL shorteners that may be used to obfuscate the destination.                |
+| security.PHISHING_INDICATORS_CONTENT | Detects phishing indicators within the content of the submission.                             |
+| security.PHISHING_INDICATORS_URL     | Flags URLs that show signs of phishing attempts.                                              |
+| security.PHISHING_INDICATORS_EMAIL   | Identifies email addresses that are commonly used in phishing attacks.                        |
+| security.SQL_INJECTION               | Detects patterns that may indicate an SQL injection attempt.                                  |
+| security.HTML_INJECTION              | Flags attempts to inject HTML code into the submission.                                       |
+| security.CROSS_SITE_SCRIPTING        | Detects cross-site scripting (XSS) attack patterns.                                           |
+| security.MALICIOUS_CODE_EXECUTION    | Flags content that may attempt to execute malicious code.                                     |
+
+# Email Detectors
+| Detector Name                | Description                                                                 |
+|------------------------------|-----------------------------------------------------------------------------|
+| email.INVALID_EMAIL      | Detects if the email address is not valid or does not conform to standard formats.        |
+| email.FREE_PROVIDER      | Flags email addresses from common free providers (e.g., Gmail, Yahoo, Outlook).          |
+| email.DISPOSABLE_PROVIDER| Identifies email addresses from disposable or temporary email services.                   |
+| email.NO_MX_RECORDS      | Detects email domains that do not have valid MX records and cannot receive email.         |

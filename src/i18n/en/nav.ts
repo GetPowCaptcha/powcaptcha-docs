@@ -18,12 +18,18 @@
  * `src/i18n/ja/nav.ts`: `'getting-started': 'はじめに',`
  */
 export default [
-	{ text: 'Welcome, World!', header: true, type: 'learn', key: 'welcomeWorld' },
+	{ text: 'Welcome, World!', header: true, type: 'learn', key: 'welcome-world' },
 	{ text: 'Getting Started', slug: 'getting-started', key: 'getting-started' },
 	{ text: 'Installation', slug: 'installation', key: 'installation' },
 	{ text: 'Invisible mode', slug: 'invisible-mode', key: 'invisible-mode' },
+
+	{ text: 'Widget SDK', header: true, type: 'learn', key: 'widget-sdk' },
+	{ text: 'Attributes', slug: 'widget-attributes', key: 'widget-attributes' },
+	{ text: 'Events', slug: 'widget-events', key: 'widget-events' },
+
 	{ text: 'Server side validation', header: true, type: 'learn', key: 'server-side-validation' },
 	{ text: 'Verify', slug: 'verify', key: 'verify' },
+	{ text: 'Spam Filter', slug: 'spam-filter', key: 'spam-filter' },
 ] satisfies NavEntry[];
 
 type NavEntry = {
