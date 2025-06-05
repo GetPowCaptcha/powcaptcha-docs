@@ -33,7 +33,7 @@ export default defineConfig({
 				Pagination: './src/components/starlight/Pagination.astro',
 				Footer: './src/components/starlight/Footer.astro',
 				SiteTitle: './src/components/starlight/SiteTitle.astro',
-				//Search: './src/components/starlight/Search.astro',
+				Search: './src/components/starlight/Search.astro',
 				Sidebar: './src/components/starlight/Sidebar.astro',
 				MobileMenuFooter: './src/components/starlight/MobileMenuFooter.astro',
 				PageTitle: './src/components/starlight/PageTitle.astro',
@@ -48,7 +48,7 @@ export default defineConfig({
 				github: 'https://github.com/GetPowCaptcha/powcaptcha-docs',
 				//discord: 'https://powcaptcha.com/chat',
 			},
-			pagefind: true,
+			pagefind: false,
 			head: [
 				// Add ICO favicon fallback for Safari.
 				{
